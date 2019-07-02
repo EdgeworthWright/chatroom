@@ -12,19 +12,21 @@ body {
   height: 100px;
   display: flex;
   align-content: flex-end;
-  color: black
+  color: black;
 }
 
 .header img {
   justify-self: center;
   margin: auto;
   max-height: 100%;
+  position: relative;
+  left: 8em;
 }
 
 .header button {
   align-self: center;
   justify-self: flex-end;
-  margin-right: 5em;
+  margin-right: 3em;
 }
 .wrapper {
   margin: 20px auto;

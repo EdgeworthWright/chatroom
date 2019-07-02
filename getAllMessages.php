@@ -24,7 +24,7 @@ if ($result) {
       $user = $username;
     }
     echo "<div class='message'>";
-    echo "Id: " . $row['id'] . " | User: " . $user . " | message: " . $row['message'];
+    echo "User: " . $user . " | message: " . $row['message'];
     echo "</div>";
   }
 } else {
