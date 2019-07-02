@@ -1,8 +1,3 @@
-<?php
-require 'private/functions.php';
-$conn = dbConnect();
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -11,14 +6,16 @@ $conn = dbConnect();
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class="header"><img src="images/logo.png" alt="ChatHub">
+      <button type="button" id="light">Light theme</button>
+      <button type="button" id="dark">Dark theme</button>
+    </div>
     <div class="wrapper">
       <div id="allmessagesbruh"></div>
       <form action="insert.php" id="frmBox" method="post" onsubmit="return formSubmit();">
-        <input type="text" name="message" placeholder="message" required>
-        <input type="submit" name="submit" value="Submit">
+        <input type="text" name="message" placeholder="message" id="message" required>
       </form>
       <h3 id="success"></h3>
-
     </div>
     <script src="node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
     <script>
@@ -32,6 +29,7 @@ $conn = dbConnect();
           }
         });
         var form = document.getElementById('frmBox').reset();
+        setTimeout(function(){$('#allmessagesbruh').scrollTop($('#allmessagesbruh')[0].scrollHeight);}, 1000);
         return false;
       }
 
@@ -41,11 +39,42 @@ $conn = dbConnect();
           url: 'getAllMessages.php',
           success: function(response) {
             $('#allmessagesbruh').html(response);
+
           }
         });
       }
 
       t = setInterval(getMessages, 1000);
+
+      $('#light').click(function() {
+        $('body').css({
+            'background': 'white'
+        });
+        $('.header').css({
+          'color': 'black'
+        });
+        $('#allmessagesbruh').css({
+          'background': 'rgba(0,0,0,.1)',
+          'color': 'black'
+        });
+
+        // <style>body{background: white;}.header{color:black;}#allmessagesbruh{background: rgba(0,0,0,.1); color: black;}.message{border-bottom: 1px solid rgba(0,0,0,.2);}</style>
+      });
+
+      $('#dark').click(function() {
+        $('body').css({
+            'background-color': 'rgba(0,0,0,.8)'
+        });
+        $('.header').css({
+          'color': 'white'
+        });
+        $('#allmessagesbruh').css({
+          'color': 'white'
+        });
+
+        // "<style>body{background:rgba(0,0,0,.8);}.header{color: white;}#allmessagesbruh{color: white;}.message{border-bottom: 1px solid rgba(255,255,255,.2);}</style>"
+      });
+
     </script>
   </body>
 </html>

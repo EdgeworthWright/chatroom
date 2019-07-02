@@ -23,7 +23,9 @@ if ($result) {
     } else {
       $user = $username;
     }
-    echo "Id: " . $row['id'] . " | User: " . $user . " | message: " . $row['message'] . "<br>";
+    echo "<div class='message'>";
+    echo "Id: " . $row['id'] . " | User: " . $user . " | message: " . $row['message'];
+    echo "</div>";
   }
 } else {
   echo "No messages";
